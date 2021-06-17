@@ -1,0 +1,146 @@
+{
+	"name": "fiddle",
+	"properties": {
+		"activities": [
+			{
+				"name": "union",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "res",
+					"value": {
+						"value": "@union(variables('a1'), variables('a2'))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "intersect",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "union",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "res",
+					"value": {
+						"value": "@intersection(variables('a1'), variables('a2'))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "take3",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "intersect",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "res",
+					"value": {
+						"value": "@take(variables('a1'), 3)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "custom",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "take3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "res",
+					"value": {
+						"value": "@take(variables('a1'), 3)",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"a1": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"name": "apple",
+						"desc": "crispy",
+						"type": "fruit"
+					},
+					{
+						"name": "banana",
+						"desc": "soft tropical",
+						"type": "fruit"
+					},
+					{
+						"name": "cat",
+						"desc": "furry, fickle",
+						"type": "mammal"
+					},
+					{
+						"name": "dog",
+						"desc": "furry, loyal",
+						"type": "mammal"
+					},
+					{
+						"name": "elephant",
+						"desc": "giant gray",
+						"type": "mammal"
+					},
+					{
+						"name": "fig",
+						"desc": "soft flowerless",
+						"type": "fruit"
+					}
+				]
+			},
+			"a2": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"name": "apple",
+						"desc": "crispy",
+						"type": "fruit"
+					},
+					{
+						"name": "banana",
+						"desc": "soft tropical",
+						"type": "fruit"
+					},
+					{
+						"name": "fig",
+						"desc": "soft flowerless",
+						"type": "fruit"
+					},
+					{
+						"name": "grape",
+						"desc": "soft juicy clustered",
+						"type": "fruit"
+					}
+				]
+			},
+			"res": {
+				"type": "Array"
+			}
+		},
+		"annotations": []
+	}
+}
