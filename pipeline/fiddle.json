@@ -141,6 +141,8 @@
 				"type": "Array"
 			}
 		},
-		"annotations": []
+		"annotations": [
+			"Project: ADF_Tutorial"
+		]
 	}
 }
