@@ -142,7 +142,8 @@
 			}
 		},
 		"annotations": [
-			"Project: ADF_Tutorial"
+			"Project: ADF_Tutorial",
+			"New annotation"
 		]
 	}
 }
