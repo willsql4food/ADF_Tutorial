@@ -70,7 +70,27 @@
 				"typeProperties": {
 					"variableName": "res",
 					"value": {
-						"value": "@take(variables('a1'), 3)",
+						"value": "@json('[{\"jag\":\"Tango\",\"x\":\"7\"}\n,{\"jag\":\"Flubber\",\"x\":\"9\"}\n,{\"jag\":\"Logan\",\"x\":\"11\"}]')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "readVal",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "custom",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "s",
+					"value": {
+						"value": "@concat(variables('res')[0].jag, '=', variables('res')[0].x)",
 						"type": "Expression"
 					}
 				}
@@ -139,6 +159,9 @@
 			},
 			"res": {
 				"type": "Array"
+			},
+			"s": {
+				"type": "String"
 			}
 		},
 		"annotations": [
